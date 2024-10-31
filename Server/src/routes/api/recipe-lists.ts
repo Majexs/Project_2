@@ -110,4 +110,4 @@ router.delete('/:id', async (req: Request, res: Response) => {
     }
 });
   
-  export { router as favoriteRecipes };
+export { router as favoriteRecipes };
