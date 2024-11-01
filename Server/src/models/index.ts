@@ -1,10 +1,10 @@
 import sequelize from "../config/connection";
 import { RecipeFactory } from './recipe';
-import { RecipeListFactory } from './recipe-list';
+import { ListFactory } from './recipe-list';
 import { UserFactory } from './user';
 
     const Recipe = RecipeFactory(sequelize);
-    const List = RecipeListFactory(sequelize);
+    const List = ListFactory(sequelize);
     const User = UserFactory(sequelize);
 
     User.hasMany(List, { foreignKey: 'assignedUserId'});
