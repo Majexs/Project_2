@@ -20,5 +20,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src", "../Client/components", "../Client/pages", "../Client/App.jsx", "../Client/main.jsx"]
 }
