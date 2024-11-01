@@ -1,5 +1,5 @@
 import React from 'react';
-import recipeSearch from './components/recipeSearch';
+import recipeSearch from '.src/components/recipeSearch';
 
 const App: React.FC = () => {
   return (
