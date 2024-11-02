@@ -16,7 +16,7 @@ export class List extends Model<ListAttributes, ListCreationAttributes> implemen
     public description!: string;
     public assignedUserId!: number;
 
-    public readonly assignedUser?: User;
+    // ADD FOREIGN KEY: USERS & RECIPES
 }
 
 export function ListFactory(sequelize: Sequelize): typeof List {

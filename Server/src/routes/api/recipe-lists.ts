@@ -3,6 +3,8 @@ import type { Request, Response } from 'express';
 import { List } from '../../models/recipe-list.js';
 import { Recipe } from '../../models/recipe.js';
 
+// NEED TO CREATE FUNCTIONS TO INITIALIZE IN ROUTES
+
 const router = express.Router();
 
 // GET /lists - Get all Lists

@@ -2,6 +2,8 @@ import express from 'express';
 import type { Request, Response } from 'express';
 import { Recipe } from '../../models/recipe.js';
 
+// NEED TO CREATE FUNCTIONS TO INITIALIZE IN ROUTES
+
 const router = express.Router();
 
 // GET /recipes - Get all recipes

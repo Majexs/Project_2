@@ -14,6 +14,8 @@ export class Recipe extends Model<RecipeAttributes, RecipeCreationAttributes> im
     public recipeName!: string;
     public ingredients!: string;
     public directions!: string;
+
+    // ADD FOREIGN KEY: LISTS
 }
 
 export function RecipeFactory(sequelize: Sequelize): typeof Recipe {
@@ -29,8 +31,8 @@ export function RecipeFactory(sequelize: Sequelize): typeof Recipe {
                 allowNull: false,
             },
             ingredients: {
-            type: DataTypes.STRING,
-            allowNull: false,
+                type: DataTypes.STRING,
+                allowNull: false,
             },
             directions: {
                 type: DataTypes.STRING,

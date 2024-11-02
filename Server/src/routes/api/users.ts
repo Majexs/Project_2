@@ -2,6 +2,8 @@ import express from 'express';
 import type { Request, Response } from 'express';
 import { User } from '../../models/user.js';
 
+// NEED TO CREATE FUNCTIONS TO INITIALIZE IN ROUTES
+
 const router = express.Router();
 
 // GET /users/:id - Get a User by ID
@@ -21,8 +23,9 @@ router.get('/:id', async (req: Request, res: Response) => {
         message: error.message
       });
     }
-  });
+});
 
+// NEED TO CREATE A PASSWORD SECTION IN CREATE USER
 // POST /users - Create a New User
 router.post('/', async (req: Request, res: Response) => {
     const { userName } = req.body;
@@ -37,6 +40,8 @@ router.post('/', async (req: Request, res: Response) => {
       });
     }
 });
+
+// NEED TO CREATE A LOGIN POST ROUTE
 
 // PUT /users/:id - Update a User by ID
 router.put('/:id', async (req: Request, res: Response) => {

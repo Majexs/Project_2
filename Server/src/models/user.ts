@@ -14,6 +14,10 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     public userName!: string;
     public password!: string;
     public email!: string;
+
+    // ADD FOREIGN KEY: LISTS
+
+    // ADD AN INSTANCE METHOD FOR EMAIL & PASSWORD?
 }
 
 export function UserFactory(sequelize: Sequelize): typeof User {
@@ -27,16 +31,30 @@ export function UserFactory(sequelize: Sequelize): typeof User {
             userName: {
                 type: DataTypes.STRING,
                 allowNull: false,
+                validate: {
+                    isAlphanumeric: true,
+                },
             },
             password: {
                 type: DataTypes.STRING,
                 allowNull: false,
+                validate: {
+                    len: [8, 15],
+                    // ADD MORE VALIDATION
+                },
             },
             email: {
                 type: DataTypes.STRING,
                 allowNull: false,
+                unique: true,
+                validate: {
+                    isEmail: true,
+                }
             },
         },
+
+        // ADD A HOOK FOR EMAIL & PASSWORD?
+
         {
             tableName: 'user',
             sequelize,
