@@ -2,8 +2,6 @@ import express from 'express';
 import type { Request, Response } from 'express';
 import { Recipe } from '../../models/recipe.js';
 
-// NEED TO CREATE FUNCTIONS TO INITIALIZE IN ROUTES
-
 const router = express.Router();
 
 // GET /recipes - Get all recipes
@@ -18,6 +16,7 @@ router.get('/', async (_req: Request, res: Response) => {
     }
 });
 
+// FIX THIS ROUTE TO SEARCH BY KEYWORD
 // GET /recipes/:cuisine - Get a recipe by Cuisine
 router.get('/:cuisine', async (req: Request, res: Response) => {
     const { cuisine } req.params;

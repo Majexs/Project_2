@@ -40,7 +40,9 @@ export function UserFactory(sequelize: Sequelize): typeof User {
                 allowNull: false,
                 validate: {
                     len: [8, 15],
-                    // ADD MORE VALIDATION
+                    notNull: {
+                        msg: 'Please enter a password',
+                    },
                 },
             },
             email: {
