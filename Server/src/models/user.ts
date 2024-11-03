@@ -1,4 +1,5 @@
 import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
+import bcrypt from 'bcrypt';
 
 interface UserAttributes {
     id: number;
@@ -15,9 +16,21 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
     public password!: string;
     public email!: string;
 
+    setEmailToLowerCase() {
+        this.email.toLowerCase();
+    }
+
+    async setPassword(newPassword: string): Promise<void> {
+        this.password = await bcrypt.hash(newPassword, 10);
+    }
+    
+    async checkPassword(loginPw: string): Promise<boolean> {
+        const result = await bcrypt.compare(loginPw, this.password);
+        return result;
+    }
+
     // ADD FOREIGN KEY: LISTS
 
-    // ADD AN INSTANCE METHOD FOR EMAIL & PASSWORD?
 }
 
 export function UserFactory(sequelize: Sequelize): typeof User {
@@ -39,9 +52,12 @@ export function UserFactory(sequelize: Sequelize): typeof User {
                 type: DataTypes.STRING,
                 allowNull: false,
                 validate: {
-                    len: [8, 15],
                     notNull: {
                         msg: 'Please enter a password',
+                    },
+                    len: {
+                        args: [8, 20],
+                        msg: 'Your password must be between 8 and 20 characters',
                     },
                 },
             },
@@ -54,10 +70,19 @@ export function UserFactory(sequelize: Sequelize): typeof User {
                 }
             },
         },
-
-        // ADD A HOOK FOR EMAIL & PASSWORD?
-
         {
+            hooks: {
+                beforeCreate: async (newUserData: any) => {
+                    await newUserData.setEmailToLowerCase();
+                    await newUserData.setPassword(newUserData.password);
+                },
+                beforeUpdate: async (updatedUserData: any) => {
+                    await updatedUserData.setEmailToLowerCase();
+                    if (updatedUserData.password) {
+                        await updatedUserData.setPassword(updatedUserData.password);
+                    }
+                },
+            },
             tableName: 'user',
             sequelize,
         }

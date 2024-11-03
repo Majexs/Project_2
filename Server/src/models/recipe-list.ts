@@ -1,11 +1,12 @@
-import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
+import { DataTypes, Sequelize, Model, Optional, ForeignKey, BelongsToManyAddAssociationMixin } from 'sequelize';
 import { User } from './user.js';
+import { Recipe } from './recipe.js';
 
 interface ListAttributes {
     id: number;
     listName: string;
     description: string;
-    assignedUserId?: number;
+    userId?: number;
 }
 
 interface ListCreationAttributes extends Optional<ListAttributes, 'id'> {}
@@ -14,9 +15,9 @@ export class List extends Model<ListAttributes, ListCreationAttributes> implemen
     public id!: number;
     public listName!: string;
     public description!: string;
-    public assignedUserId!: number;
+    public userId: ForeignKey<User['id']>;
 
-    // ADD FOREIGN KEY: USERS & RECIPES
+    public addRecipe: BelongsToManyAddAssociationMixin<Recipe, Recipe['id']>;
 }
 
 export function ListFactory(sequelize: Sequelize): typeof List {
