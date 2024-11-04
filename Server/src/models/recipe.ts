@@ -6,6 +6,7 @@ interface RecipeAttributes {
     recipeName: string;
     ingredients: string;
     directions: string;
+    cuisine: string;
 }
 
 interface RecipeCreationAttributes extends Optional<RecipeAttributes, 'id'> {}
@@ -15,6 +16,7 @@ export class Recipe extends Model<RecipeAttributes, RecipeCreationAttributes> im
     public recipeName!: string;
     public ingredients!: string;
     public directions!: string;
+    public cuisine!: string;
 
     public addList: BelongsToManyAddAssociationMixin<List, List['id']>;
 }
@@ -36,6 +38,10 @@ export function RecipeFactory(sequelize: Sequelize): typeof Recipe {
                 allowNull: false,
             },
             directions: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            cuisine: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
