@@ -38,7 +38,7 @@ router.get('/ingredient', async (req: Request, res: Response) => {
 // GET /recipes/:cuisine - Get a Recipe Based on a Cuisine
 // NEED TO FIX
 router.get('/:cuisine', async (req: Request, res: Response) => {
-    const { cuisine } req.params;
+    const { cuisine } = req.params;
     try {
         const recipe = await Recipe.includes(cuisine);
         if(recipe) {
