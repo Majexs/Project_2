@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+
 # Dependencies
 node_modules
 
@@ -20,6 +21,12 @@ out/
 # Environment variables
 .env
 
+node_modules
+dist
+dist-ssr
+*.local
+
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -31,6 +38,7 @@ out/
 *.sln
 *.sw?
 
+
 # macOS system files
 .DS_Store
 
@@ -39,4 +47,7 @@ Thumbs.db
 
 # TypeScript cache
 .tsbuildinfo
+
+
+environment
 
