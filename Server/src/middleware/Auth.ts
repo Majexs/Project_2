@@ -1,4 +1,4 @@
-import {request, resp, nextFunc} from 'express';
+import {request, response, NextFunction} from 'express';
 
 import jwt from 'jsonwebtoken';
 
@@ -8,8 +8,8 @@ interface JwtPayload {
 
 export const authenticateToken = (
     req = request,
-    res = resp,
-    next = nextFunc
+    res = response,
+    next = NextFunction,
 ) => {
     const authHeader = req.headers.authorization;
 
