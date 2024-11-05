@@ -10,8 +10,8 @@ lerna-debug.log*
 # Dependencies
 node_modules
 
-# Build outputs
-dist
+# Bu ild outputs
+dist 
 dist-ssr
 build/
 .cache/
@@ -39,3 +39,4 @@ Thumbs.db
 
 # TypeScript cache
 .tsbuildinfo
+
