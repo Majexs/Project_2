@@ -36,7 +36,7 @@ export function ListFactory(sequelize: Sequelize): typeof List {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
-            assignedUserId: {
+            userId: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
             },

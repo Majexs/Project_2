@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import type { Request, Response } from 'express';
 import { User } from '../../models/user.js';
 import bcrypt from 'bcrypt';

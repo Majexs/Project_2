@@ -1,17 +1,10 @@
 # Schedule #
-**Sunday**
-- Meet and check in about individual progress
-- Discuss how everything fits together
-- What still needs to be done
-- What should we accomplish by Monday? Tuesday
-
-**Monday**
-- Test the App and debug code
-- Get help from Christian/Saurabh where necessary?
 
 **Tuesday**
+- Tutoring (James)
+    - Work through Server-side errors; get MVP through Insomnia
 - Prepare presentation
-    - Write ReadMe
+    - Write ReadMe (James)
     - Create presentation document
 
 **Wednesday**
@@ -78,5 +71,3 @@
 - Get Recipe by Cuisine Type
 
 # Back End #
-## .env ##
-- Do we need a token for access to Recipes API???
