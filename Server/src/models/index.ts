@@ -7,9 +7,20 @@ import { UserFactory } from './user';
     const List = ListFactory(sequelize);
     const User = UserFactory(sequelize);
 
-    User.hasMany(List, { foreignKey: 'assignedUserId'});
-    List.belongsTo(User, { foreignKey: 'assignedUserId', as: 'assignedUser'});
-    List.hasMany(Recipe, { foreignKey: 'assignedRecipeId'});
-    Recipe.belongsTo(List, { foreignKey: 'assignedRecipeId', as: 'assignedRecipe'});
+    // User can have multiple Recipe Lists
+    User.hasMany(List, {
+        onDelete: 'CASCADE',
+    });
+
+    // Each Recipe List can only belong to one User
+    List.belongsTo(User);
+
+    // Each Recipe List can have multiple Recipes
+    List.belongsToMany(Recipe, {
+        onDelete: 'CASCADE',
+    });
+
+    // Each Recipe can belong to multiple Recipe Lists
+    Recipe.belongsToMany(List);
     
-export { User, List, Recipe };
+export { sequelize, User, List, Recipe };
