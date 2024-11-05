@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import type { Request, Response } from 'express';
 import { List } from '../../models/recipe-list.js';
 import { Recipe } from '../../models/recipe.js';
@@ -54,10 +54,10 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 // POST /lists - Create new List
 router.post('/', async (req: Request, res: Response) => {
-    const { name, description } = req.body;
+    const { listName, description } = req.body;
     try {
       const newList = await List.create({
-        name, description
+        listName, description
       });
       res.status(201).json(newList);
     } catch (error: any) {
@@ -70,11 +70,11 @@ router.post('/', async (req: Request, res: Response) => {
 // PUT /lists/:id - Update List by ID
 router.put('/:id', async (req: Request, res: Response) => {
     const { id } = req.params;
-    const { name, description } = req.body;
+    const { listName, description } = req.body;
     try {
       const list = await List.findByPk(id);
       if(list) {
-        list.name = name;
+        list.listName = listName;
         list.description = description;
         await list.save();
         res.json(list);

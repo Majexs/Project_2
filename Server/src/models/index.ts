@@ -16,11 +16,6 @@ import { UserFactory } from './user';
     List.belongsTo(User);
 
     // Each Recipe List can have multiple Recipes
-    List.belongsToMany(Recipe, {
-        onDelete: 'CASCADE',
-    });
-
-    // Each Recipe can belong to multiple Recipe Lists
-    Recipe.belongsToMany(List);
+    List.hasMany(Recipe);
     
 export { sequelize, User, List, Recipe };
