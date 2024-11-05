@@ -15,9 +15,9 @@ export class List extends Model<ListAttributes, ListCreationAttributes> implemen
     public id!: number;
     public listName!: string;
     public description!: string;
-    public userId: ForeignKey<User['id']>;
+    public userId!: ForeignKey<User['id']>;
 
-    public addRecipe: BelongsToManyAddAssociationMixin<Recipe, Recipe['id']>;
+    public addRecipe!: BelongsToManyAddAssociationMixin<Recipe, Recipe['id']>;
 }
 
 export function ListFactory(sequelize: Sequelize): typeof List {

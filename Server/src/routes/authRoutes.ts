@@ -3,8 +3,21 @@ import { User } from '../models/index.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 dotenv.config();
+
+// POST /users - Create a New User
+export const signup = async (req: Request, res: Response) => {
+  const { userName , email, password } = req.body;
+  try {
+    const newUser = await User.create({ userName, email, password, });
+    newUser.password = await bcrypt.hash(req.body.password, 10);
+    res.status(201).json(newUser);
+  } catch (error: any) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 
 export const login = async (req: Request, res: Response) => {
   const { userName, email, password } = req.body;
@@ -32,6 +45,7 @@ export const login = async (req: Request, res: Response) => {
 
 const router = Router();
 
+router.post('/signup', signup);
 router.post('/login', login);
 
 export default router;
