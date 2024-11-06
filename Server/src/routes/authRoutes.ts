@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 dotenv.config();
 
-// POST /users - Create a New User
+// POST /signup - Create a New User
 export const signup = async (req: Request, res: Response) => {
   const { userName , email, password } = req.body;
   try {
@@ -23,7 +23,7 @@ export const signup = async (req: Request, res: Response) => {
   }
 };
 
-
+// POST /login - Logs into existing User
 export const login = async (req: Request, res: Response) => {
   const { userName, password } = req.body;
 
