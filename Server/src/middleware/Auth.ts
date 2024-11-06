@@ -2,7 +2,7 @@ import {Request, Response, NextFunction} from 'express';
 import jwt from 'jsonwebtoken';
 
 interface JwtPayload {
-    username: string;
+    userName: string;
 }
 
 export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
