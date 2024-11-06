@@ -1,16 +1,11 @@
-import {request, response, NextFunction} from 'express';
-
+import {Request, Response, NextFunction} from 'express';
 import jwt from 'jsonwebtoken';
 
 interface JwtPayload {
-    user: string;
+    username: string;
 }
 
-export const authenticateToken = (
-    req = request,
-    res = response,
-    next = NextFunction,
-) => {
+export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
 
     if (authHeader) {

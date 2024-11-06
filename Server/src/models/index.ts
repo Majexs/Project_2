@@ -1,7 +1,7 @@
-import sequelize from "../config/connection";
-import { RecipeFactory } from './recipe';
-import { ListFactory } from './recipe-list';
-import { UserFactory } from './user';
+import sequelize from "../config/connection.js";
+import { RecipeFactory } from './recipe.js';
+import { ListFactory } from './recipe-list.js';
+import { UserFactory } from './user.js';
 
     const Recipe = RecipeFactory(sequelize);
     const List = ListFactory(sequelize);

@@ -1,4 +1,4 @@
-import { DataTypes, Sequelize, Model, Optional, ForeignKey, BelongsToManyAddAssociationMixin } from 'sequelize';
+import { DataTypes, Sequelize, Model, Optional, BelongsToManyAddAssociationMixin } from 'sequelize';
 import type { List } from './recipe-list';
 
 interface RecipeAttributes {
@@ -18,7 +18,7 @@ export class Recipe extends Model<RecipeAttributes, RecipeCreationAttributes> im
     public directions!: string;
     public cuisine!: string;
 
-    public addList: BelongsToManyAddAssociationMixin<List, List['id']>;
+    public addList!: BelongsToManyAddAssociationMixin<List, List['id']>;
 }
 
 export function RecipeFactory(sequelize: Sequelize): typeof Recipe {
