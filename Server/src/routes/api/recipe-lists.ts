@@ -12,7 +12,7 @@ router.get('/', async (_req: Request, res: Response) => {
             include: [
                 {
                     model: Recipe,
-                    as: 'includedRecipe',
+                    as: 'Recipe',
                     attributes:['recipeName',]
                 },
             ],
