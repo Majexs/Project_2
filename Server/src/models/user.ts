@@ -20,17 +20,9 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
         this.email.toLowerCase();
     }
 
-    async setPassword(newPassword: string): Promise<void> {
-        this.password = await bcrypt.hash(newPassword, 10);
+    async setPassword(password: string): Promise<void> {
+        this.password = await bcrypt.hash(password, 10);
     }
-    
-    async checkPassword(loginPw: string): Promise<boolean> {
-        const result = await bcrypt.compare(loginPw, this.password);
-        return result;
-    }
-
-    // ADD FOREIGN KEY: LISTS
-
 }
 
 export function UserFactory(sequelize: Sequelize): typeof User {
@@ -44,22 +36,18 @@ export function UserFactory(sequelize: Sequelize): typeof User {
             userName: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                validate: {
-                    isAlphanumeric: true,
-                },
+                // validate: {
+                //     isAlphanumeric: true,
+                // },
             },
             password: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                validate: {
-                    notNull: {
-                        msg: 'Please enter a password',
-                    },
-                    len: {
-                        args: [8, 20],
-                        msg: 'Your password must be between 8 and 20 characters',
-                    },
-                },
+                // validate: {
+                //     notNull: {
+                //         msg: 'Please enter a password',
+                //     },
+                // },
             },
             email: {
                 type: DataTypes.STRING,
@@ -72,16 +60,16 @@ export function UserFactory(sequelize: Sequelize): typeof User {
         },
         {
             hooks: {
-                beforeCreate: async (newUserData: any) => {
-                    await newUserData.setEmailToLowerCase();
-                    await newUserData.setPassword(newUserData.password);
+                beforeCreate: async (user: any) => {
+                    // await newUserData.setEmailToLowerCase();
+                    await user.setPassword(user.password);
                 },
-                beforeUpdate: async (updatedUserData: any) => {
-                    await updatedUserData.setEmailToLowerCase();
-                    if (updatedUserData.password) {
-                        await updatedUserData.setPassword(updatedUserData.password);
-                    }
-                },
+                // beforeUpdate: async (updatedUserData: any) => {
+                //     await updatedUserData.setEmailToLowerCase();
+                //     if (updatedUserData.password) {
+                //         await updatedUserData.setPassword(updatedUserData.password);
+                //     }
+                // },
             },
             tableName: 'user',
             sequelize,
