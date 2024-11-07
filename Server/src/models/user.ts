@@ -55,10 +55,6 @@ export function UserFactory(sequelize: Sequelize): typeof User {
                     notNull: {
                         msg: 'Please enter a password',
                     },
-                    len: {
-                        args: [8, 20],
-                        msg: 'Your password must be between 8 and 20 characters',
-                    },
                 },
             },
             email: {

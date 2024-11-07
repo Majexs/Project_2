@@ -8,18 +8,15 @@ dotenv.config();
 
 // POST /signup - Create a New User
 export const signup = async (req: Request, res: Response) => {
-  const { userName , email, password } = req.body;
   try {
-    const newUser = await User.create({ userName, email, password, });
-    if (!newUser) {
-      return res.status(401).json({ message: 'Authentication failed' });
-    }
-    newUser.password = await bcrypt.hash(req.body.password, 10);
-    const secretKey = process.env.JWT_SECRET_KEY || '';
-    const token = jwt.sign({ email }, secretKey, { expiresIn: '1h' });
-    return res.json({ token });
-  } catch (error: any) {
-    return res.status(400).json({ message: error.message });
+    const newUser = req.body;
+    // ! hash the password from 'req.body' and save to newUser
+    newUser.setPassword;
+    // ! create the newUser with the hashed password and save to DB
+    const userData = await User.create(newUser);
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(400).json(err);
   }
 };
 
@@ -32,12 +29,12 @@ export const login = async (req: Request, res: Response) => {
   });
 
   if (!user) {
-    return res.status(401).json({ message: 'Authentication failed' });
+    return res.status(401).json({ message: 'Cannot find user' });
   }
 
   const passwordIsValid = await bcrypt.compare(password, user.password);
   if (!passwordIsValid) {
-    return res.status(401).json({ message: 'Authentication failed' });
+    return res.status(401).json({ message: 'Password incorrect' });
   }
 
   const secretKey = process.env.JWT_SECRET_KEY || '';
