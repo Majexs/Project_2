@@ -12,7 +12,7 @@ router.get('/', async (_req: Request, res: Response) => {
             include: [
                 {
                     model: Recipe,
-                    as: 'includedRecipe',
+                    as: 'Recipe',
                     attributes:['recipeName',]
                 },
             ],
@@ -54,10 +54,10 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 // POST /lists - Create new List
 router.post('/', async (req: Request, res: Response) => {
-    const { listName, description } = req.body;
+    const { listName, description, userId } = req.body;
     try {
       const newList = await List.create({
-        listName, description
+        listName, description, userId
       });
       res.status(201).json(newList);
     } catch (error: any) {
