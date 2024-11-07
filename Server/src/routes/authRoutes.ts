@@ -9,12 +9,8 @@ dotenv.config();
 // POST /signup - Create a New User
 export const signup = async (req: Request, res: Response) => {
   try {
-    const newUser = req.body;
-    // ! hash the password from 'req.body' and save to newUser
-    newUser.setPassword;
-    // ! create the newUser with the hashed password and save to DB
-    const userData = await User.create(newUser);
-    res.status(200).json(userData);
+    const user = await User.create(req.body);
+    res.status(200).json(user);
   } catch (err) {
     res.status(400).json(err);
   }
