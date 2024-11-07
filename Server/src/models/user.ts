@@ -36,18 +36,18 @@ export function UserFactory(sequelize: Sequelize): typeof User {
             userName: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                // validate: {
-                //     isAlphanumeric: true,
-                // },
+                validate: {
+                    isAlphanumeric: true,
+                },
             },
             password: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                // validate: {
-                //     notNull: {
-                //         msg: 'Please enter a password',
-                //     },
-                // },
+                validate: {
+                    notNull: {
+                        msg: 'Please enter a password',
+                    },
+                },
             },
             email: {
                 type: DataTypes.STRING,
@@ -61,15 +61,14 @@ export function UserFactory(sequelize: Sequelize): typeof User {
         {
             hooks: {
                 beforeCreate: async (user: any) => {
-                    // await newUserData.setEmailToLowerCase();
                     await user.setPassword(user.password);
                 },
-                // beforeUpdate: async (updatedUserData: any) => {
-                //     await updatedUserData.setEmailToLowerCase();
-                //     if (updatedUserData.password) {
-                //         await updatedUserData.setPassword(updatedUserData.password);
-                //     }
-                // },
+                beforeUpdate: async (updatedUserData: any) => {
+                    await updatedUserData.setEmailToLowerCase();
+                    if (updatedUserData.password) {
+                        await updatedUserData.setPassword(updatedUserData.password);
+                    }
+                },
             },
             tableName: 'user',
             sequelize,

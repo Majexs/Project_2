@@ -6,7 +6,7 @@ interface ListAttributes {
     id: number;
     listName: string;
     description: string;
-    userId?: number;
+    userId: number;
 }
 
 interface ListCreationAttributes extends Optional<ListAttributes, 'id'> {}
